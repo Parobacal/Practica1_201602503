@@ -5,7 +5,8 @@ import java.util.*;
 
 public class Buscaminas_201602503 {
     
-private static Scanner sc;
+       
+        private static Scanner sc;
 	private static int a, error;
 	private static String usuario[] = new String[5];
 	public static void main(String[] args) {
@@ -13,27 +14,31 @@ private static Scanner sc;
         int op =0, h=0, pri=0;
         String letra;
         String nuevo;
-        Scanner scan = new Scanner(System.in);
-        Scanner teclado= new Scanner(System.in);
-        Scanner s = new Scanner(System.in);
-        Scanner prin = new Scanner(System.in);
-        Scanner sca = new Scanner(System.in);
-        while(op != 3 ){
+        
+        
           
             System.out.println("Pablo Rodrigo Barillas Calderón");
             System.out.println("201602503");
             System.out.println("\n IPC1 A Práctica 1");
             System.out.println("¡¡¡BUSCAMINAS!!!");
+            System.out.println("\n Presione enter para empezar...");
            
-            Scanner scansi = new Scanner(System.in);
-            op = scansi.nextInt();
-            
-            switch (op){
-            case (1):
-                break;                        
-            }
+            Scanner scanner = new Scanner(System.in);
+           String readString = scanner.nextLine();
+            if (readString.isEmpty()) {
+           System.out.println("¡¡¡BUSCAMINAS!!!");
+           System.out.println("\n1. Principiante");
+           System.out.println("2. Intermedio");
+           System.out.println("3. Experto");
+           System.out.println("4. Salir");
+        }
+        if (scanner.hasNextLine()) {
+            readString = scanner.nextLine();
+        } else {
+            readString = null;
         }
 
-    }
-}
+                                  
+            }
+        }
 

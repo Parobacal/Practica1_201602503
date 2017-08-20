@@ -15,7 +15,6 @@ public class Buscaminas_201602503 {
     public static int mov2 = 0;
     public static int win = 0;
     public static boolean fipartida = false;
-    public static boolean debug = false;
     public static int count = 0;
     public static boolean fi = false;
         private static Scanner sc;
@@ -34,7 +33,7 @@ public class Buscaminas_201602503 {
             Scanner scanner = new Scanner(System.in);
            String readString = scanner.nextLine();
             
-           if (readString.isEmpty()) {
+           while (readString.isEmpty()) {
                 
            System.out.println("¡¡¡BUSCAMINAS!!!");
            System.out.println("\n1. Principiante");
@@ -68,10 +67,9 @@ public class Buscaminas_201602503 {
                     break;
              }
              
-        }else {
-            readString = null;
-            System.out.println("\n¡SOLO ES VÁLIDA LA TECLA ENTER!");
+            
         }
+        System.out.println("\n¡SOLO ES VÁLIDA LA TECLA ENTER!");
         }
 }
 

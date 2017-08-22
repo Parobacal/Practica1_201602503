@@ -32,7 +32,8 @@ public class Buscaminas_201602503 {
         System.out.println("2. Intermedio");
         System.out.println("3. Avanzado");
         System.out.println("4. Salir");
-        System.out.print("Ingrese opción... ");
+        System.out.println("");
+        System.out.print("Ingrese su elección... ");
         int op=0;
         String error="";
         try{
@@ -131,6 +132,52 @@ public class Buscaminas_201602503 {
     }
 
   
+    public static void min() {
+        int count = 0;
+        for (int n = 2; n <= m1.length - 2; ++n) {
+            for (int o = 2; o <= m1[0].length - 2; ++o) {
+                count = 0;
+                if ((m1[n + 1][o + 1] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n - 1][o - 1] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n - 1][o + 1] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n + 1][o - 1] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n - 1][o] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n + 1][o] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n][o + 1] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if ((m1[n][o - 1] == '*') && (m1[n][o] == 'X')) {
+                    ++count;
+                }
+                if (m1[n][o] == 'X') {
+                    if (count > 0) {
+                        m1[n][o] = Integer.toString(count).charAt(0);
+                    } else if (count == 0) {
+                        m1[n][o] = Integer.toString(count).charAt(0);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < fil; i++) {
+            for (int j = 0; j < col; j++) {
+                if (m1[i][j] == 'X') {
+                    m1[i][j] = Integer.toString(0).charAt(0);
+                }
+            }
+        }
+    }
 
    
     public static void usuario() {
@@ -142,9 +189,14 @@ public class Buscaminas_201602503 {
         boolean valid = false;
         while (!valid) {
            
-            System.out.println("Voltear (V) ");
+            System.out.println("\nVoltear (V) ");
             System.out.println("Reiniciar (R) ");
             System.out.println("Salir (S) ");
+            System.out.println("");
+            System.out.println("Escoga su opción: ");
+            String simon = pri.nextLine();
+            
+        if(simon.equalsIgnoreCase("v")){    
             try{
                 System.out.println("\nIngrese fila y columana separado por coma ");
                 String entrada = sc.nextLine();
@@ -163,31 +215,75 @@ public class Buscaminas_201602503 {
                 if((a < fil && b < col) && (a > 0 && b > 0)){
                     valid = true;
                 }else{
-                    System.out.print("¡¡ERROR!!");
+                    System.out.println("¡¡ERROR!!");
+                    System.out.println("¡Ingresa una fila y columna dentro del rango del tamaño elegido!");
                     valid = false;
                 }
             }else{
                 if ((ele.equals("N") || ele.equals("n"))){
                     valid = false;    
-                }else{ 
-                    if (ele.equals("S") || ele.equals("s")){
+                }    
+            }    
+        }    
+            
+            
+                
+                
+                
+                
+        else if (simon.equals("S") || simon.equals("s")){
                         valid = true;
                         finalito = true;
-                    }else{
-                        if(ele.equalsIgnoreCase("r")){
+           }
+        else if(simon.equalsIgnoreCase("r")){
                             valid=true;
                             reiniciar=true;
                         }else{
-                            System.out.println("Instruccion no reconocida, ingresa un caracter valido");
+                            System.out.println("Instrucción no reconocida, ingresa un caracter válido");
                         }
-                    }
-                }
-            }
+                    
+                
+            
         }
     }
 
    
-    
+    public static void destapar(int c1, int c2) {
+        int cas1 = a;
+        int cas2 = b;
+        if (c1 > fil - 1 || c1 < 0 || c2 > col - 1 || c2 < 0) {
+            return;
+        }
+        if (m1[cas1][cas2] == '*') {
+            finalito = true;
+            System.out.println("¡ENCONTRASTE UNA MINA!, ¡¡¡PERDISTE!!! JAJA");
+            System.out.println("");
+        } else if (m1[c1][c2] == '0') {
+            if (m2[c1][c2] != m1[c1][c2]) {
+                m2[c1][c2] = m1[c1][c2];
+                ++conta;
+                destapar(c1 + 1, c2);
+                destapar(c1, c2 + 1);
+                destapar(c1 + 1, c2 + 1);
+            }
+            if (c1 > fil - 1 || c1 < 0 || c2 > col - 1 || c2 < 0) {
+                destapar(c1, c2 - 1);
+                destapar(c1 - 1, c2);
+                destapar(c1 - 1, c2 - 1);
+                destapar(c1 - 1, c2 + 1);
+                destapar(c1 + 1, c2 - 1);
+            }
+        } else if ((m1[c1][c2] > '0')) {
+            if (m2[c1][c2] != m1[c1][c2]) {
+                m2[c1][c2] = m1[c1][c2];
+                ++conta;
+            }
+        }
+        if (conta == gan) {
+            System.out.println("VICTORIA, ¡FELICITACIONES GANASTE!");
+            finalito = true;
+        }
+    }
 
   
     public static void main(String[] args) {
@@ -199,6 +295,7 @@ public class Buscaminas_201602503 {
             System.out.println("201602503");
             System.out.println("IPC1 (A) Práctica 1");
             System.out.println("Buscaminas");
+            System.out.println("");
             System.out.println("Presione enter para iniciar...");
             s = sc.nextLine();
             break;
@@ -213,6 +310,8 @@ public class Buscaminas_201602503 {
             System.out.println("");
             usuario();
             minasfeas();
+            min();
+            destapar(a, b);
             while (!finalito) {
                 if (pr) {
                     eltablero(fil, col, m1);
@@ -225,6 +324,7 @@ public class Buscaminas_201602503 {
                 eltablero(fil, col, m2);
                 System.out.println("");
                 usuario();
+                destapar(a, b);
             }
         }
 

@@ -33,7 +33,7 @@ public class Buscaminas_201602503 {
         System.out.println("3. Avanzado");
         System.out.println("4. Salir");
         System.out.println("");
-        System.out.print("Ingrese su elección... ");
+        System.out.print("Ingrese su elección: ");
         int op=0;
         String error="";
         try{
@@ -78,11 +78,11 @@ public class Buscaminas_201602503 {
     }
 
     
-    public static void eltablero(int length, int length0, char[][] matriz) {
+    public static void eltablero(int l, int an, char[][] matriz) {
        
-        for (int i = 1; i < length; i++) {
-            for (int j = 1; j < length0; j++) {
-                System.out.printf("%s", "[" + matriz[i][j] + "]");
+        for (int i = 1; i < l; i++) {
+            for (int po = 1; po < an; po++) {
+                System.out.printf("%s", "[" + matriz[i][po] + "]");
             }
          
             System.out.println("");
@@ -116,11 +116,11 @@ public class Buscaminas_201602503 {
         int i = 0;
         out:
         while (i <= minas) {
-            for (int j = 1; j < fil; j++) {
+            for (int po = 1; po < fil; po++) {
                 for (int k = 1; k < col; k++) {
                     int mina = randnumeros(col);
-                    if ((k == mina) && (m1[j][k] == 'X') && (j != a && k != b)) {
-                        m1[j][k] = '*';
+                    if ((k == mina) && (m1[po][k] == 'X') && (po != a && k != b)) {
+                        m1[po][k] = '*';
                         ++i;
                         if (i == minas) {
                             break out;
@@ -189,25 +189,27 @@ public class Buscaminas_201602503 {
         boolean valid = false;
         while (!valid) {
            
+            System.out.println("-------------------------");
             System.out.println("\nVoltear (V) ");
             System.out.println("Reiniciar (R) ");
             System.out.println("Salir (S) ");
             System.out.println("");
-            System.out.println("Escoga su opción: ");
+            System.out.print("Escoga su opción: ");
             String simon = pri.nextLine();
             
         if(simon.equalsIgnoreCase("v")){    
             try{
-                System.out.println("\nIngrese fila y columana separado por coma ");
+                System.out.println("-------------------------");
+                System.out.print("\nIngrese fila y columana separado por coma: ");
                 String entrada = sc.nextLine();
                 String s[] = entrada.split(",");
                 a = Integer.parseInt(s[0]);
                 b = Integer.parseInt(s[1]);
                 
             }catch(Exception e){
-                System.out.println("Ingrese un dato valido");
+                System.out.println("Ingrese un dato válido");
             }
-            System.out.println("Ingrese opción, (Y) para sí y (N) para no: ");
+            System.out.print("¿Está seguro?, ingrese (Y) para sí y (N) para no: ");
             String ele = x.nextLine();
             System.out.println("");
 
@@ -258,6 +260,7 @@ public class Buscaminas_201602503 {
             finalito = true;
             System.out.println("¡ENCONTRASTE UNA MINA!, ¡¡¡PERDISTE!!! JAJA");
             System.out.println("");
+            
         } else if (m1[c1][c2] == '0') {
             if (m2[c1][c2] != m1[c1][c2]) {
                 m2[c1][c2] = m1[c1][c2];

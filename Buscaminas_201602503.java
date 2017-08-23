@@ -322,6 +322,9 @@ public class Buscaminas_201602503 {
                 }
                 if(reiniciar){
                     tab();
+            minasfeas();
+            min();
+                    System.out.println("");
                     reiniciar=false;
                 }
                 eltablero(fil, col, m2);

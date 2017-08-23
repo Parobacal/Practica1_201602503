@@ -15,6 +15,7 @@ public class Buscaminas_201602503 {
     public static int fil = 0;
     public static int col = 0;
     public static boolean reiniciar = false;
+    public static boolean mostratodo = false;
     public static String d;
     public static boolean finalito = false;
     public static boolean ocaso = false;
@@ -27,7 +28,7 @@ public class Buscaminas_201602503 {
         Scanner sc = new Scanner(System.in);
         while(finalito){
             finalito=false;
-        System.out.println("¡¡¡BUSCAMINAS!!!");
+        System.out.println("\n¡¡¡BUSCAMINAS!!!");
         System.out.println("1. Principiante");
         System.out.println("2. Intermedio");
         System.out.println("3. Avanzado");
@@ -76,7 +77,6 @@ public class Buscaminas_201602503 {
         }
         }
     }
-
     
     public static void eltablero(int l, int an, char[][] matriz) {
        
@@ -240,27 +240,40 @@ public class Buscaminas_201602503 {
         else if(simon.equalsIgnoreCase("r")){
                             valid=true;
                             reiniciar=true;
+                         
                         }else{
                             System.out.println("Instrucción no reconocida, ingresa un caracter válido");
-                        }
-                    
-                
-            
+                        }     
         }
     }
 
    
     public static void destapar(int c1, int c2) {
+        boolean valid = false;
+        Scanner io = new Scanner(System.in);
         int cas1 = a;
         int cas2 = b;
         if (c1 > fil - 1 || c1 < 0 || c2 > col - 1 || c2 < 0) {
             return;
         }
         if (m1[cas1][cas2] == '*') {
-            finalito = true;
-            System.out.println("¡ENCONTRASTE UNA MINA!, ¡¡¡PERDISTE!!! JAJA");
-            System.out.println("");
             
+            System.out.println("¡ENCONTRASTE UNA MINA!, ¡¡¡PERDISTE!!! JAJA");
+            System.out.println("¡Estas eran las posiciones:");
+            System.out.println("");
+            eltablero(fil,col,m1);
+            System.out.print("\nPero... ¿desea reiniciar?, (Y) para sí y (N) para no: ");
+            String re = io.nextLine();
+            if(re.equalsIgnoreCase("y")){
+                System.out.println("");
+                valid=true;
+               reiniciar=true;
+                }
+            else if (re.equals("N") || re.equals("n")){
+                System.out.println("");
+                valid=true;
+                finalito = true;
+                }
         } else if (m1[c1][c2] == '0') {
             if (m2[c1][c2] != m1[c1][c2]) {
                 m2[c1][c2] = m1[c1][c2];
@@ -322,10 +335,15 @@ public class Buscaminas_201602503 {
                 }
                 if(reiniciar){
                     tab();
-            minasfeas();
-            min();
+                    minasfeas();
+                    min();
                     System.out.println("");
                     reiniciar=false;
+                }
+                if (mostratodo){
+                    eltablero(fil, col, m2);
+                    
+                    mostratodo=false;
                 }
                 eltablero(fil, col, m2);
                 System.out.println("");
@@ -334,5 +352,6 @@ public class Buscaminas_201602503 {
             }
         }
 
-    }
+    }                                   
+     
 }

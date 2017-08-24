@@ -11,6 +11,8 @@ public class Buscaminas_201602503 {
     public static int minas = 0;
     public static int a = 0;
     public static int b = 0;
+    public static int a1 = 0;
+    public static int b1= 0;
     public static int gan = 0;
     public static int fil = 0;
     public static int col = 0;
@@ -206,6 +208,7 @@ public class Buscaminas_201602503 {
                 a = Integer.parseInt(s[0]);
                 b = Integer.parseInt(s[1]);
                 
+                
             }catch(Exception e){
                 System.out.println("Ingrese un dato válido");
             }
@@ -215,7 +218,14 @@ public class Buscaminas_201602503 {
 
             if ((ele.equals("Y") || ele.equals("y"))) {
                 if((a < fil && b < col) && (a > 0 && b > 0)){
-                    valid = true;
+                    
+                    if (m2[a][b] == 'X') {
+                    valid = true;    
+                    }
+                    else{
+                       System.out.println("Esa posición ya fue volteada, por favor, ¡INGRESA OTRA!"); 
+                    valid = true;         
+                    }
                 }else{
                     System.out.println("¡¡ERROR!!");
                     System.out.println("¡Ingresa una fila y columna dentro del rango del tamaño elegido!");
@@ -227,12 +237,6 @@ public class Buscaminas_201602503 {
                 }    
             }    
         }    
-            
-            
-                
-                
-                
-                
         else if (simon.equals("S") || simon.equals("s")){
                         valid = true;
                         finalito = true;
@@ -256,10 +260,10 @@ public class Buscaminas_201602503 {
         if (c1 > fil - 1 || c1 < 0 || c2 > col - 1 || c2 < 0) {
             return;
         }
-        if (m1[cas1][cas2] == '*') {
+             if (m1[cas1][cas2] == '*') {
             
             System.out.println("¡ENCONTRASTE UNA MINA!, ¡¡¡PERDISTE!!! JAJA");
-            System.out.println("¡Estas eran las posiciones:");
+            System.out.println("Estas eran las posiciones:");
             System.out.println("");
             eltablero(fil,col,m1);
             System.out.print("\nPero... ¿desea reiniciar?, (Y) para sí y (N) para no: ");
